@@ -176,7 +176,7 @@ Joe is new to coding but holds the work to a commercial standard. Claude Code wr
 
 **2. Roadmap-driven, autonomous PRs.** Claude works through the roadmap in order: branch → local lint, format, typecheck, test, build, and E2E → a PR with a Traditional Chinese write-up (what changed, why it's industry practice, how to test) → squash merge on green CI → update progress, start the next item. In the morning Joe reads a progress report and a list of things to check on the live site.
 
-**3. A decisions log.** Wherever the spec is silent, Claude picks an industry default and records the date, decision, reasoning, and where to change it. **162 decisions** so far.
+**3. A decisions log.** Wherever the spec is silent, Claude picks an industry default and records the date, decision, reasoning, and where to change it. **172 decisions** so far.
 
 **4. CI as a merge gate.** main changes only through PRs, merged only when CI is green: format, lint, types, unit tests, and E2E, plus Semgrep, gitleaks, Dependabot, and an OWASP ZAP baseline when security settings change.
 
@@ -184,7 +184,7 @@ Joe is new to coding but holds the work to a commercial standard. Claude Code wr
 
 **6. QA sweeps (a custom skill).** Every page × 5 widths (360–1280 px) × light/dark × Chinese/English × several roles, checked automatically for overlaps, clipped text, horizontal scroll, touch-target size, axe WCAG 2.1 AA, browser errors, broken links, and slow loads. Claude fixes what's real and logs each round.
 
-**7. AI usability tests (a custom skill).** Claude walks the main tasks as seven personas (junior-high student, high-school student, student abroad, professional, older learner, assistive-technology user, English-UI user) on phone and laptop, and fixes issues by Nielsen severity (0–4). These are **not** real-user tests; they catch obvious layout and flow problems. Real-user interviews are being planned.
+**7. AI usability tests (a custom skill).** Claude walks 12 whole flows as ten personas (adding a senior preparing for the college entrance exam, a Taiwanese graduate student in the US, and a cram-school teacher) in four roles (guest, free, paid, admin) on emulated iPhone and Android and a laptop, and fixes issues by Nielsen severity (0–4). Latest run: 3 rounds, all 39 flows completed, no severity 3–4, simulated SUS 73.5 → 77.5. These are **not** real-user tests; a real-user Beta (15 people, 2 weeks) is planned and ready.
 
 **8. Escaped-bug reviews.** Every bug Joe found in production that the tests missed is logged with its cause, why the tests missed it, and the test added. Eleven so far; most came from differences between the test environment and production (time zones, phones, switching accounts, real AI output), so three time zones, two phone emulations, account switching, and the AI eval are now part of the default suite.
 
@@ -193,11 +193,11 @@ Joe is new to coding but holds the work to a commercial standard. Claude Code wr
 | Metric                          | Value                                                   |
 | ------------------------------- | ------------------------------------------------------- |
 | Build period                    | 2026-10-24 to 2026-11-13 (21 days)                      |
-| Merged PRs                      | ~205                                                    |
+| Merged PRs                      | ~220                                                    |
 | Commits per PR (average)        | 1.5; 3–7 early on, then a steady 1.0–1.5                |
 | Cycle time per item (median)    | ~11 minutes                                             |
 | PR opened to merged (median)    | ~4 minutes                                              |
-| Database migrations             | 61                                                      |
+| Database migrations             | 64                                                      |
 
 ## Evals and quality numbers
 
@@ -223,11 +223,11 @@ Joe is new to coding but holds the work to a commercial standard. Claude Code wr
 
 | Item                                  | Value                                                                                                   |
 | ------------------------------------- | ------------------------------------------------------------------------------------------------------- |
-| Unit and component tests (Vitest)     | ~1,960                                                                                                  |
-| E2E tests (Playwright)                | 159, against the production build; includes axe accessibility checks, iPhone 15 / Pixel 7 emulation, three time zones |
-| QA sweep rounds                       | 58; the latest passed all 80 page/role combinations, leaving only known test-environment false alarms   |
+| Unit and component tests (Vitest)     | ~2,030                                                                                                  |
+| E2E tests (Playwright)                | 179, against the production build; includes axe and keyboard accessibility checks, iPhone 15 / Pixel 7 emulation, three time zones |
+| QA sweep rounds                       | 60; the latest passed all 81 page/role combinations, leaving only known test-environment false alarms   |
 | AI usability test                     | 11 tasks over two rounds; 0 severity 3–4 issues, all 5 severity-2 issues fixed; 0 axe violations        |
-| Lighthouse (production home page)     | Mobile: performance 92, accessibility 100, best practices 100, SEO 100; desktop performance 100         |
+| Lighthouse (production home page)     | Mobile: 100 on performance, accessibility, best practices, and SEO; 10 main pages at mobile performance 96–100         |
 | Load test (k6, single local process)  | 500 concurrent users: p95 37 ms, 0% errors; still 0% errors at 1,000                                    |
 
 ## Cost control

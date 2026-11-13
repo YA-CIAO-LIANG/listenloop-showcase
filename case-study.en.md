@@ -45,7 +45,7 @@ The method that works is old-fashioned: take a short clip, write down every word
 | Working professionals               | Meetings, calls, clients                  | Done in 10 minutes a day                    |
 | Teachers and cram schools           | Assigning materials, tracking students    | Class tools, each student's gain            |
 
-Seven personas (a junior-high student, a high-school student, a student abroad, a professional, an older learner, an assistive-technology user, an English-interface user) drive an AI usability test whose findings are fixed by Nielsen severity.
+Ten personas (adding a senior preparing for the college entrance exam, a Taiwanese graduate student in the US, and a cram-school teacher) drive an AI usability test whose findings are fixed by Nielsen severity.
 
 ## 4. The solution: a 7-day loop
 
@@ -69,7 +69,7 @@ Materials come from the free official library (including Creative Commons films 
 
 ## 5. Product decisions and trade-offs
 
-Every detail the spec left open has a decision record (162 so far): date, decision, reasoning, and where to change it. A few that shaped the product:
+Every detail the spec left open has a decision record (172 so far): date, decision, reasoning, and where to change it. A few that shaped the product:
 
 | Decision            | Chosen                                                    | Given up, and why                                                                                                         |
 | ------------------- | --------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------- |
@@ -94,11 +94,11 @@ Every detail the spec left open has a decision record (162 so far): date, decisi
 
 | Layer              | What                                                                                                                   |
 | ------------------ | ---------------------------------------------------------------------------------------------------------------------- |
-| Unit and component | ~1,960 tests: scoring normalization and alignment, the 7-day rules, sync merging, plans and allowances, RLS coverage   |
-| End to end         | 159 tests against the production build, with a stand-in Supabase, a fixed clock, three time zones, two phone emulations |
+| Unit and component | ~2,030 tests: scoring normalization and alignment, the 7-day rules, sync merging, plans and allowances, RLS coverage   |
+| End to end         | 179 tests against the production build, with a stand-in Supabase, a fixed clock, three time zones, two phone emulations |
 | AI eval            | 54 golden cases, 60 points from rules + 40 from an AI judge; a PR can't merge if it scores below main                   |
-| Page sweep         | Every page at 5 widths × light/dark × Chinese/English × several roles: overlaps, clipping, overflow, touch targets, axe WCAG 2.1 AA; 58 rounds |
-| Simulated users    | 7 personas complete the main tasks on phone and laptop; fixes by severity                                               |
+| Page sweep         | Every page at 5 widths × light/dark × Chinese/English × several roles: overlaps, clipping, overflow, touch targets, axe WCAG 2.1 AA; 60 rounds |
+| Simulated users    | 10 personas in 4 roles walk 12 whole flows; simulated SUS 73.5 → 77.5                                                  |
 | Security scanning  | Semgrep (formerly CodeQL), gitleaks, Dependabot, OWASP ZAP baseline                                                                        |
 
 **Every escaped bug becomes a test.** Each bug found in production that the tests missed gets a review: cause, why the tests missed it, and the test added. Of 11 entries, 7 came from differences between the test environment and production (time zones, phones, switching accounts, real AI output), 3 from testing only the happy path or one role, and 3 from unscored AI content quality (an entry can fall in more than one). The responses: add those environment differences to the default suite, cover four roles in E2E, and make the AI eval a merge gate.
@@ -112,10 +112,10 @@ Every detail the spec left open has a decision record (162 so far): date, decisi
 | Item                          | Number                                                                                          |
 | ----------------------------- | ----------------------------------------------------------------------------------------------- |
 | Build period                  | 2026-10-24 to 2026-11-13 (21 days)                                                              |
-| Merged PRs                    | ~205; 1.5 commits per PR on average, median cycle time ~11 minutes                              |
-| Unit and component tests      | ~1,960                                                                                          |
-| E2E tests                     | 159                                                                                             |
-| Page-sweep rounds             | 58                                                                                              |
+| Merged PRs                    | ~220; 1.5 commits per PR on average, median cycle time ~11 minutes                              |
+| Unit and component tests      | ~2,030                                                                                          |
+| E2E tests                     | 179                                                                                             |
+| Page-sweep rounds             | 60                                                                                              |
 | AI eval                       | 54 cases, total score 92.06 → 96.31                                                             |
 | Recorded decisions            | 162                                                                                             |
 | Database migrations           | 61                                                                                              |
