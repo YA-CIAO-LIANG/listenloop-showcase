@@ -5,6 +5,8 @@
 > An English listening course for students in Taiwan. Built by a vibe-coding founder (Joe) as product owner, working with Claude Code, from zero to production in 21 days.
 >
 > This repository is a portfolio: product overview, engineering notes, and screenshots. It contains no source code.
+>
+> **Source code**: the main repository is public at <https://github.com/YA-CIAO-LIANG/listenloop> (code, tests, and the decision log `docs/decisions.md`).
 
 **Live site: <https://listenloop-three.vercel.app>**
 
@@ -259,7 +261,7 @@ High-level summary only.
 - AI input is passed to the model in a structured form; output must match a JSON schema, is validated field by field, and is always rendered as plain text.
 - Automated scanning:
   - **gitleaks** over the full git history: no real secret was ever committed (every hit was a false positive such as a test placeholder).
-  - **CodeQL / Semgrep**: 0 code alerts; the one Medium workflow finding (a third-party action not pinned to a commit) was fixed. After the repo went private, Semgrep open-source rules replaced CodeQL: 0 findings.
+  - **CodeQL / Semgrep**: 0 code alerts; the one Medium workflow finding (a third-party action not pinned to a commit) was fixed. Semgrep open-source rules run alongside CodeQL (0 findings); the main repo is public again since 2026-11-21.
   - **OWASP ZAP baseline**: no High findings; an information-leaking header and a missing `Cross-Origin-Resource-Policy` were fixed, and each remaining item has a documented reason.
   - **npm audit** (production dependencies): 0 vulnerabilities; Dependabot checks weekly.
 - A personal-data inventory with a purpose and retention period for each kind of data; deleting an account removes all related data and recordings, and a test checks that every column pointing to an account has a deletion rule.

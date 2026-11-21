@@ -5,6 +5,8 @@
 > 給台灣學生的英文聽力課程網站。由一位 vibe coding 創辦人（Joe）擔任產品負責人，與 Claude Code 合作，21 天從零到正式上線。
 >
 > 這個 repo 是作品集，只有產品介紹、工程說明與截圖，不含程式碼。
+>
+> **原始碼**：主 repo 已公開，見 <https://github.com/YA-CIAO-LIANG/listenloop>（程式碼、測試、決策紀錄 `docs/decisions.md`）。
 
 **正式站：<https://listenloop-three.vercel.app>**
 
